@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
-const authRoute = require("./controllers/auth");
+const router = require("./controllers/auth");
 const db = require("./database/db");
 
 app.use(express.json());
-app.use("/auth",authRoute)
+app.use("/auth",router)
 db.migrate.latest();
 
 app.listen(2001, ()=> {

@@ -1,4 +1,4 @@
-const jwt = require("jwt");
+const jwt = require("jsonwebtoken");
 const users= [
     {
         email: "user@mail.com",
@@ -7,7 +7,7 @@ const users= [
 ]
 
 const { auth } = require("../config/auth");
-async function cocreateToken(userId){
+function createToken(userId){
 
     const token = jwt.sign({userId}, auth.jwt_secret);
     console.log("token",token);
@@ -20,7 +20,7 @@ exports.login = async function(user){
     const givenUser = users.includes(user);
     if (givenUser){
         // compare passwords
-        const token = jwt.createToken(user.id);
+        const token = createToken(user.id);
         return token;
 
     }
