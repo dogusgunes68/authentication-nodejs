@@ -1,7 +1,7 @@
-const yup = require("yup");
+const joi = require("joi");
 
-exports.authValidation = yup.object({
-    email: yup.string().required().email(),
-    password: yup.string().min(6).max(50).required(),
+exports.authValidation = joi.object({
+    email: joi.string().required().email(),
+    password: joi.string().min(6).max(50).required(),
 });
 
