@@ -5,6 +5,6 @@ const {validateBody} =require("../middlewares/validateBody")
 const router = express.Router();
 
 router.post("/sign-up",validateBody(authValidation), registerController);
-router.post("/sig-in", validateBody(authValidation), signInController);
+router.post("/sign-in", validateBody(authValidation), signInController);
 
 module.exports = router;

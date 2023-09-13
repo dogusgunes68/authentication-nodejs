@@ -7,6 +7,7 @@ const users= [
 ]
 
 const { auth } = require("../config/auth");
+const AppError = require("../errors/app-error");
 function createToken(userId){
 
     const token = jwt.sign({userId}, auth.jwt_secret);
@@ -17,16 +18,13 @@ function createToken(userId){
 
 exports.login = async function(user){
     // check if user is exist
-    const givenUser = users.includes(user);
-    if (givenUser){
-        // compare passwords
-        const token = createToken(user.id);
-        return token;
-
+    console.log(user);
+    const givenUser = users[0].email.includes(user.email);
+    if (!givenUser){
+        throw new AppError(404, "User doesnt exist");
     }
-
-    return null;
-
+    const token = createToken(user);
+    return token;
 }
 
 exports.register = async function(user){

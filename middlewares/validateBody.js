@@ -1,15 +1,13 @@
+const AppError = require("../errors/app-error");
+const { tryCatch } = require("../utils/tryCatch");
 
 
 exports.validateBody = function(schema){
-        return  (req, res, next) => {
-            const {error, value} = schema.validate(req.body);
+        return tryCatch(async (req, res, next) => {
+            const {error, value} = await schema.validate(req.body);
             if(error) {
-                return res.status(400).json({
-                    success: false,
-                    message: error.message,
-                })
+                throw new AppError(400, error.messge);
             }
-            req.body = value;
             next();
-        }
+        });
 }

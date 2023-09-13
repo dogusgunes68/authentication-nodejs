@@ -1,11 +1,11 @@
 const AppError = require("./app-error");
-exports.errorHandler = function(error, req, res, next){
+function errorHandler(error, req, res, next){
 
-    if (error.name = "ValidationError"){
+    if (error.name === "ValidationError"){
         return res.status(400).json({
             type: error.name,
             message: error.message
-        })
+        });
     }
 
     if (error instanceof AppError){
@@ -15,5 +15,7 @@ exports.errorHandler = function(error, req, res, next){
         });
     }
 
-    return res.status(500).json("Internal Server Error");
+    return res.status(500).json("Internal Server Errorrr");
 }
+
+module.exports = errorHandler;
