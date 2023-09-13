@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const users= [
     {
+        id: 1,
         email: "user@mail.com",
         password: "123456"
     }
@@ -36,4 +37,8 @@ exports.register = async function(user){
 
     return user;
 
+}
+
+exports.getPost = function (post){
+    return true;
 }

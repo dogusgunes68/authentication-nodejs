@@ -13,7 +13,16 @@ exports.signInController = tryCatch(async function(req, res){
 exports.registerController = tryCatch(async function(req, res){
     const user = await register(req.body);
     if(!user){
-        throw AppError(400, "User doesnt exist");
+        throw AppError(404, "User doesnt exist");
     }
+    res.status(200).json("success");
+});
+
+exports.getPostController = tryCatch(async function(req, res){
+    const post = await getPost(req.body.id);
+
+    if (!post){
+        throw AppError(404, "Post doesnt exist.");
+    } 
     res.status(200).json("success");
 });
